@@ -20,37 +20,25 @@ if (token) {
   button.innerText = '×';
   button.setAttribute('aria-label', '閉じる');
   wrap.appendChild(button);
+
+  document.body.style.overflow = 'hidden';
   
-  const deleteButton = document.createElement('button');
-  
-  // ボタン押下時の処理
   iframe.onload = () => {
     button.addEventListener('click', () => {
       iframe.contentWindow?.postMessage({ action: 'formmate-close' }, '*')
       button.remove();
-      deleteButton.className = 'formmate-close';
-      deleteButton.innerText = '×';
-      deleteButton.setAttribute('aria-label', '閉じる');
-      wrap.appendChild(deleteButton);
     })
   };
-  
-  deleteButton.addEventListener('click', () => {
-    container.remove();
-    document.body.style.overflow = '';
-  })
-  
-  document.body.style.overflow = 'hidden';
-  
   
   let messageHandled = false;
   const allowedOrigins = ['http://localhost:3006', 'https://formmate.io', 'https://www.formmate.io'];
   window.addEventListener('message', function(event) {
-    if (messageHandled) return; // 二重処理防止
+    if (messageHandled) return;
     if (allowedOrigins.includes(event.origin)) {
       if (event.data?.action === 'remove') {
         messageHandled = true;
         container.remove();
+        button.remove();
         document.body.style.overflow = '';
       }
     }
@@ -101,22 +89,22 @@ if (token) {
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
     }
     @media (max-width: 1200px) {
-      .formmate-iframe {
+      .formmate-wrap {
         width: 992px;
       }
     }
     @media (max-width: 992px) {
-      .formmate-iframe {
+      .formmate-wrap {
         width: 767px;
       }
     }
     @media (max-width: 767px) {
-      .formmate-iframe {
+      .formmate-wrap {
         width: 576px;
       }
     }
     @media (max-width: 576px) {
-      .formmate-iframe {
+      .formmate-wrap {
         width: 95%;
       }
     }
@@ -124,4 +112,3 @@ if (token) {
   
   document.head.appendChild(style);
 }
-
