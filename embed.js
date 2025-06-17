@@ -11,7 +11,7 @@ if (token) {
   container.appendChild(wrap);
   
   const iframe = document.createElement('iframe');
-  iframe.src = `http://localhost:3006/app/embed/thanks?token=${encodeURIComponent(token)}`;
+  iframe.src = `https://formmate.io/app/embed/thanks?token=${encodeURIComponent(token)}`;
   iframe.className = 'formmate-iframe';
   wrap.appendChild(iframe);
   
