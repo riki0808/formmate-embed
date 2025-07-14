@@ -15,11 +15,13 @@ if (token) {
   iframe.className = 'formmate-iframe';
   wrap.appendChild(iframe);
   
-  const button = document.createElement('button');
-  button.className = 'formmate-close';
-  button.innerText = '×';
-  button.setAttribute('aria-label', '閉じる');
-  wrap.appendChild(button);
+  setTimeout(() => {
+    const button = document.createElement('button');
+    button.className = 'formmate-close';
+    button.innerText = '×';
+    button.setAttribute('aria-label', '閉じる');
+    wrap.appendChild(button);
+  }, 3000);
 
   document.body.style.overflow = 'hidden';
   
