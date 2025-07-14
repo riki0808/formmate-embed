@@ -11,26 +11,26 @@ if (token) {
   container.appendChild(wrap);
   
   const iframe = document.createElement('iframe');
-  iframe.src = `https://formmate.io/app/embed/thanks?token=${encodeURIComponent(token)}`;
+  iframe.src = `http://localhost:3006/app/embed/thanks?token=${encodeURIComponent(token)}`;
   iframe.className = 'formmate-iframe';
   wrap.appendChild(iframe);
   
+  let button = null;
+  // 5秒後にbuttonを追加
   setTimeout(() => {
-    const button = document.createElement('button');
+    button = document.createElement('button');
     button.className = 'formmate-close';
     button.innerText = '×';
     button.setAttribute('aria-label', '閉じる');
+    button.addEventListener('click', () => {
+      console.log('ssssss')
+      iframe.contentWindow?.postMessage({ action: 'formmate-close' }, '*')
+      button.remove();
+    })
     wrap.appendChild(button);
   }, 3000);
 
   document.body.style.overflow = 'hidden';
-  
-  iframe.onload = () => {
-    button.addEventListener('click', () => {
-      iframe.contentWindow?.postMessage({ action: 'formmate-close' }, '*')
-      button.remove();
-    })
-  };
   
   let messageHandled = false;
   const allowedOrigins = ['http://localhost:3006', 'https://formmate.io', 'https://www.formmate.io'];
@@ -41,7 +41,7 @@ if (token) {
         messageHandled = true;
         container.remove();
         button.remove();
-        document.body.style.overflow = '';
+        document.body.style.overflow = 'auto';
       }
     }
   }, false);
