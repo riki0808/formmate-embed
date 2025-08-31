@@ -23,7 +23,6 @@ if (token) {
     button.innerText = '×';
     button.setAttribute('aria-label', '閉じる');
     button.addEventListener('click', () => {
-      console.log('ssssss')
       iframe.contentWindow?.postMessage({ action: 'formmate-close' }, '*')
       button.remove();
     })
