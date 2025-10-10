@@ -3,11 +3,19 @@ function setupIframe() {
   console.log('iframe',iframe)
   const allowedOrigins = ['http://localhost:3006', 'https://formmate.io', 'https://www.formmate.io'];
   window.addEventListener('message', function(event) {
-    console.log('event',event)
-    if (!allowedOrigins.includes(event.origin)) return;
-    console.log('ここきた？')
-    if (event.source !== iframe.contentWindow) return;
-    console.log('ここきた？2')
+    try {
+      if (!allowedOrigins.includes(event.origin)) return;
+      console.log('ここきた？')
+    } catch (error) {
+      console.error('Error handling message event:', error);
+    }
+
+    try {
+      if (event.source !== iframe.contentWindow) return;
+      console.log('ここきた？2')
+    } catch (error) {
+      console.error('Error parsing message data:', error);
+    }
     const receivedData = event.data;
     console.log('receivedData',receivedData)
     if (receivedData && receivedData.height && !isNaN(receivedData.height) && receivedData.height > 0) {
