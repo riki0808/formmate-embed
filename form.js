@@ -14,7 +14,6 @@ function setupIframe() {
       console.error('Error parsing message data:', error);
     }
     const receivedData = event.data;
-    console.log('receivedData:', receivedData);
     if (receivedData && receivedData.height) {
       iframe.style.height = receivedData.height + 'px';
     }
