@@ -14,7 +14,7 @@ function setupIframe() {
       console.error('Error parsing message data:', error);
     }
     const receivedData = event.data;
-    if (receivedData && receivedData.height && !isNaN(receivedData.height) && receivedData.height > 0) {
+    if (receivedData && receivedData.height) {
       iframe.style.height = receivedData.height + 'px';
     }
     if (receivedData?.type === 'redirect' && receivedData.url) {
