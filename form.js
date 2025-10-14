@@ -1,5 +1,6 @@
 function setupIframe() {
   const iframe = document.getElementById('myIframe');
+  console.log('Iframe element:', iframe);
   const allowedOrigins = ['http://localhost:3006', 'https://formmate.io', 'https://www.formmate.io'];
   window.addEventListener('message', function(event) {
     try {
@@ -14,6 +15,7 @@ function setupIframe() {
       console.error('Error parsing message data:', error);
     }
     const receivedData = event.data;
+    console.log('receivedData:', receivedData);
     if (receivedData && receivedData.height) {
       iframe.style.height = receivedData.height + 'px';
     }
