@@ -1,6 +1,5 @@
 function setupIframe() {
   const iframe = document.getElementById('myIframe');
-  console.log('Iframe element:', iframe);
   const allowedOrigins = ['http://localhost:3006', 'https://formmate.io', 'https://www.formmate.io'];
   window.addEventListener('message', function(event) {
     try {
