@@ -22,7 +22,8 @@ function setupIframe() {
       if(receivedData?.token){
         redirectUrl.searchParams.set('token', receivedData.token);
       }
-      window.location.href = redirectUrl.toString();
+      window.top.location.href = redirectUrl.toString();
+      // window.location.href = redirectUrl.toString();
     }
   }, false);
 }
